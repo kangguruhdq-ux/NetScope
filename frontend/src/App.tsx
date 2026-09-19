@@ -18,6 +18,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { WebSentinelPage } from './pages/WebSentinelPage';
 import { SecurityHubPage } from './pages/SecurityHubPage';
+import { ActivityLogsPage } from './pages/ActivityLogsPage';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { token, isLoading } = useAuth();
@@ -79,6 +80,16 @@ export const App: React.FC = () => {
 
                 {/* Safeguard 4: /profile is accessible by all roles and NEVER redirects to /dashboard */}
                 <Route path="profile" element={<ProfilePage />} />
+
+                {/* Activity & Audit Logs (Admin Only) */}
+                <Route
+                  path="activity-logs"
+                  element={
+                    <AdminRoute>
+                      <ActivityLogsPage />
+                    </AdminRoute>
+                  }
+                />
 
                 {/* Global Settings (Admin Only) */}
                 <Route

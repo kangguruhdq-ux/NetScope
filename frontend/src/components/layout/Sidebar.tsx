@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   ShieldAlert,
   X,
+  History,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -40,6 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
   ];
 
   if (isAdmin) {
+    navItems.push({ to: '/activity-logs', label: 'Activity Logs', icon: History });
     navItems.push({ to: '/settings', label: 'Platform Settings', icon: Settings });
   }
 

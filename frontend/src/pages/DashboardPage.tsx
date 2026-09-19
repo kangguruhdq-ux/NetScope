@@ -31,6 +31,7 @@ import {
   Radio,
   Layers,
   Terminal,
+  History,
 } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
@@ -328,7 +329,7 @@ export const DashboardPage: React.FC = () => {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 font-mono">
           <button
             onClick={() => navigate('/troubleshooting?tab=traceroute')}
             className="p-3 rounded-lg bg-[#0E1526] hover:bg-[#141f38] border border-cyan-500/20 hover:border-cyan-500/50 text-left transition group"
@@ -382,6 +383,17 @@ export const DashboardPage: React.FC = () => {
             <div className="text-xs font-bold text-white group-hover:text-amber-300">Storage Deck</div>
             <div className="text-[10px] text-gray-400 mt-0.5">Vacuum &amp; cleanup</div>
           </button>
+
+          {isAdmin && (
+            <button
+              onClick={() => navigate('/activity-logs')}
+              className="p-3 rounded-lg bg-[#0E1526] hover:bg-[#141f38] border border-cyan-500/30 hover:border-cyan-400 text-left transition group"
+            >
+              <History className="w-4 h-4 text-cyan-400 mb-1.5 group-hover:scale-110 transition-transform" />
+              <div className="text-xs font-bold text-white group-hover:text-cyan-300">Activity Logs</div>
+              <div className="text-[10px] text-gray-400 mt-0.5">Audit trail &amp; delete</div>
+            </button>
+          )}
         </div>
       </div>
 
