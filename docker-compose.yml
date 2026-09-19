@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: netscope-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DEMO_MODE=true
+      - DATABASE_URL=sqlite+aiosqlite:///./netscope.db
+      - SECRET_KEY=netscope_production_docker_secret_key_2026_change_me
+    volumes:
+      - netscope-data:/app
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    networks:
+      - netscope-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: netscope-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - netscope-net
+
+volumes:
+  netscope-data:
+
+networks:
+  netscope-net:
+    driver: bridge

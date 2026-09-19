@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0B0F19;
+    color: #F3F4F6;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar for NOC Obsidian theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #06B6D4;
+}
+
+/* Circuit trace & node grid background pattern */
+.cyber-circuit-bg {
+  background-color: #0B0F19;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%),
+    linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Glowing card border & interactive animations */
+.noc-card {
+  background-color: #111827;
+  border: 1px solid #1F2937;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.noc-card:hover {
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.15);
+}
+
+/* Glowing input fields */
+.noc-input {
+  background-color: #0E1424;
+  border: 1px solid #1F2937;
+  color: #F3F4F6;
+  transition: all 0.2s ease;
+}
+.noc-input:focus {
+  outline: none;
+  border-color: #06B6D4;
+  box-shadow: 0 0 15px -2px rgba(6, 182, 212, 0.35);
+}
+
+/* Page Transitions */
+.page-fade-enter {
+  animation: pageFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 3D Perspective and Card Swap Animations */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes cardSwapInRight {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-12deg) translateX(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+@keyframes cardSwapInLeft {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(12deg) translateX(-30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+.card-swap-right {
+  animation: cardSwapInRight 0.42s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+.card-swap-left {
+  animation: cardSwapInLeft 0.42s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+/* Pulse glow for real-time live telemetry cards */
+.live-pulse-glow {
+  animation: liveGlow 3s infinite ease-in-out;
+}
+
+@keyframes liveGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 22px -1px rgba(6, 182, 212, 0.35);
+  }
+}
+
+/* Print Friendly Stylesheet for PDF reports */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .noc-card {
+    background: #FFFFFF !important;
+    border: 1px solid #E5E7EB !important;
+    box-shadow: none !important;
+    color: #111827 !important;
+  }
+}
+
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
